@@ -9,6 +9,17 @@
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
+```swift
+class ViewController: UIViewController, DropdownMenuMixin { // Adding DropdownMenuMixin conformance 
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.title = "Smart"
+        self.setupTitleDropdownMenu(["Smart", "Latest", "Neareast", "Most Popular"])//call setupTitleDropdownMenu to create a dropdown menu, the first parameter is the menu items list
+    }
+}
+```
+
 ## Requirements
 
 ## Installation
@@ -22,7 +33,7 @@ pod "DropdownMenu"
 
 ## Author
 
-邱星豪, qiuxh@2345.com
+Qiu Xinghao, qxh@mail.com
 
 ## License
 
