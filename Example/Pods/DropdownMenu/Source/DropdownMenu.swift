@@ -9,7 +9,7 @@
 import UIKit
 
 // MARK: - DropdownMenu Mixin
-@objc public protocol DropdownMenuMixin {
+@objc protocol DropdownMenuMixin {
     //navigationBar title menu
     optional var titleDropdownMenu: DropdownMenu { get set }
     optional func setupTitleDropdownMenu(items: [String])
@@ -25,7 +25,7 @@ import UIKit
 
 // Providing Default Implementations of DropdownMenuMixin
 extension DropdownMenuMixin where Self: UIViewController {
-    public var titleDropdownMenu: DropdownMenu {
+    var titleDropdownMenu: DropdownMenu {
         get {
             var bounds = self.view.bounds
             bounds.origin.y = (self.navigationController?.navigationBar.bounds.height)! + UIApplication.sharedApplication().statusBarFrame.size.height
@@ -43,11 +43,11 @@ extension DropdownMenuMixin where Self: UIViewController {
         }
     }
     
-    public func setupTitleDropdownMenu(items: [String]) {
+    func setupTitleDropdownMenu(items: [String]) {
         self.titleDropdownMenu.items = items
     }
     
-    public var rightDropdownMenu: DropdownMenu {
+    var rightDropdownMenu: DropdownMenu {
         get {
             var bounds = self.view.bounds
             bounds.origin.y = (self.navigationController?.navigationBar.bounds.height)! + UIApplication.sharedApplication().statusBarFrame.size.height
@@ -63,11 +63,11 @@ extension DropdownMenuMixin where Self: UIViewController {
         }
     }
     
-    public func setupRightDropdownMenu(items: [String]) {
+    func setupRightDropdownMenu(items: [String]) {
         self.rightDropdownMenu.items = items
     }
     
-    public var multiSectionTitleDropdownMenu: DropdownMenu {
+    var multiSectionTitleDropdownMenu: DropdownMenu {
         get {
             var bounds = self.view.bounds
             bounds.origin.y = (self.navigationController?.navigationBar.bounds.height)! + UIApplication.sharedApplication().statusBarFrame.size.height
@@ -83,13 +83,14 @@ extension DropdownMenuMixin where Self: UIViewController {
         }
     }
     
-    public func setupMultiSectionTitleDropdownMenu(sections: [(title: String, items: [String])]) {
+    func setupMultiSectionTitleDropdownMenu(sections: [(title: String, items: [String])]) {
         self.multiSectionTitleDropdownMenu.sections = sections
     }
 }
 
 // MARK: - Dropdownable protocol
-public protocol Dropdownable {
+protocol Dropdownable {
+    var backgroundView: UIView { get set } //a mask background View
     var isShown: Bool { get set }
     
     func show()
@@ -102,19 +103,19 @@ public protocol Dropdownable {
 
 // Providing Default Implementations of Dropdownable
 extension Dropdownable where Self: UIView {
-    public func show() {
+    func show() {
         if self.isShown == false {
             self.showMenu()
         }
     }
     
-    public func hide() {
+    func hide() {
         if self.isShown == true {
             self.hideMenu()
         }
     }
     
-    public func toggle() {
+    func toggle() {
         if self.isShown == true {
             self.hideMenu()
         } else {
@@ -124,13 +125,13 @@ extension Dropdownable where Self: UIView {
 }
 
 // Drop down view type
-public enum DropdownMenuType {
+enum DropdownMenuType {
     case Grid // show as Grid
     case Table // show as Table
 }
 
 // Drop down position
-public enum DropdownMenuPostion {
+enum DropdownMenuPostion {
     case Middle // at middle
     case Right // at right
 }
@@ -138,22 +139,22 @@ public enum DropdownMenuPostion {
 // MARK: - DropdownMenu Control
 let DropdownCollectionViewCellIdentifier:String = "DropdownCollectionViewCell"
 
-public class DropdownMenu: UIView, Dropdownable, UICollectionViewDataSource, UICollectionViewDelegate {
+class DropdownMenu: UIView, Dropdownable, UICollectionViewDataSource, UICollectionViewDelegate {
 
-    public var type: DropdownMenuType = .Table
-    public var position: DropdownMenuPostion = .Middle
-    public var width: CGFloat = UIScreen.mainScreen().bounds.width // menu width
-    public var items: [String] = [] {
+    var type: DropdownMenuType = .Table
+    var position: DropdownMenuPostion = .Middle
+    var width: CGFloat = UIScreen.mainScreen().bounds.width // menu width
+    var items: [String] = [] {
         didSet {
             self.reloadData()
         }
     }// menu item titles (for Table type)
-    public var sections: [(title: String, items: [String])] = [] // menu sections ( for CollectionType)
-    public var isShown: Bool = false
-    public var tableView: UITableView?
-    public let margin: CGFloat = 5.0
-    public let cellHeight: CGFloat = 40.0
-    public var didSelectItemHandler: (indexPath: NSIndexPath, item: String) -> Void = { _ in }
+    var sections: [(title: String, items: [String])] = [] // menu sections ( for CollectionType)
+    var isShown: Bool = false
+    var tableView: UITableView?
+    let margin: CGFloat = 5.0
+    let cellHeight: CGFloat = 40.0
+    var didSelectItemHandler: (indexPath: NSIndexPath, item: String) -> Void = { _ in }
     
     lazy var backgroundView: UIView = {
         let _backgroundView = UIView(frame: self.bounds)
@@ -182,7 +183,7 @@ public class DropdownMenu: UIView, Dropdownable, UICollectionViewDataSource, UIC
         return _collectionView
     }()
     
-    public init(frame: CGRect, type: DropdownMenuType, position: DropdownMenuPostion, items: [String], sections: [(title: String, items: [String])], didSelectItemHandler: (indexPath: NSIndexPath, item: String) -> Void) {
+    init(frame: CGRect, type: DropdownMenuType, position: DropdownMenuPostion, items: [String], sections: [(title: String, items: [String])], didSelectItemHandler: (indexPath: NSIndexPath, item: String) -> Void) {
         
         // Set frame
         super.init(frame: frame)
@@ -202,21 +203,21 @@ public class DropdownMenu: UIView, Dropdownable, UICollectionViewDataSource, UIC
         self.hidden = true
     }
     
-    public convenience init(frame: CGRect, type: DropdownMenuType, position: DropdownMenuPostion, items: [String], didSelectItemHandler: (indexPath: NSIndexPath, item: String) -> Void) {
+    convenience init(frame: CGRect, type: DropdownMenuType, position: DropdownMenuPostion, items: [String], didSelectItemHandler: (indexPath: NSIndexPath, item: String) -> Void) {
 
         self.init(frame: frame, type: type, position: position, items: items, sections: [], didSelectItemHandler: didSelectItemHandler)
     }
     
-    public convenience init(frame: CGRect, type: DropdownMenuType, position: DropdownMenuPostion, sections: [(title: String, items: [String])], didSelectItemHandler: (indexPath: NSIndexPath, item: String) -> Void) {
+    convenience init(frame: CGRect, type: DropdownMenuType, position: DropdownMenuPostion, sections: [(title: String, items: [String])], didSelectItemHandler: (indexPath: NSIndexPath, item: String) -> Void) {
         
         self.init(frame: frame, type: type, position: position, items: [], sections: sections, didSelectItemHandler: didSelectItemHandler)
     }
 
-    required public init?(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func reloadData() {
+    func reloadData() {
         let layout = UICollectionViewFlowLayout()
         let totalWidth = self.width - self.margin*2
         var cellWidth: CGFloat = 0.0
@@ -263,7 +264,7 @@ public class DropdownMenu: UIView, Dropdownable, UICollectionViewDataSource, UIC
     
     // MARK: - Dropdownable
     
-    public func showMenu() {
+    func showMenu() {
         self.isShown = true
         
         // Visible menu view
@@ -290,7 +291,7 @@ public class DropdownMenu: UIView, Dropdownable, UICollectionViewDataSource, UIC
         )
     }
     
-    public func hideMenu() {
+    func hideMenu() {
         self.isShown = false
         
         // Change background alpha
@@ -319,7 +320,7 @@ public class DropdownMenu: UIView, Dropdownable, UICollectionViewDataSource, UIC
     
     // MARK: - UICollectionViewDataSource
     // CollectionView sections number
-    public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         if self.sections.count > 0 {
             return self.sections.count
         }
@@ -327,7 +328,7 @@ public class DropdownMenu: UIView, Dropdownable, UICollectionViewDataSource, UIC
     }
     
     // CollectionView items number
-    public func collectionView(collectionView: UICollectionView,
+    func collectionView(collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
         if self.sections.count > 0 {
             let (_, items) = self.sections[section]
@@ -336,8 +337,8 @@ public class DropdownMenu: UIView, Dropdownable, UICollectionViewDataSource, UIC
         return self.items.count
     }
     
-    // setup cepublic ll
-    public func collectionView(collectionView: UICollectionView,
+    // setup cell
+    func collectionView(collectionView: UICollectionView,
         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(
             DropdownCollectionViewCellIdentifier, forIndexPath: indexPath) as UICollectionViewCell
@@ -365,7 +366,7 @@ public class DropdownMenu: UIView, Dropdownable, UICollectionViewDataSource, UIC
     }
     
     // MARK: - UICollectionViewDelegate
-    public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         var item: String = ""
         if self.sections.count > 0 {
             item = self.sections[indexPath.section].items[indexPath.row]

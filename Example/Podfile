@@ -3,11 +3,8 @@ use_frameworks!
 
 target 'DropdownMenu_Example', :exclusive => true do
   pod 'DropdownMenu', :path => '../'
-  #pod 'SwiftyJSON'
 end
 
 target 'DropdownMenu_Tests', :exclusive => true do
-  #pod 'DropdownMenu', :path => '../'
-
-  
+  pod 'DropdownMenu', :path => '../'
 end
