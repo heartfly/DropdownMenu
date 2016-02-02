@@ -5,6 +5,9 @@
 [![License](https://img.shields.io/cocoapods/l/DropdownMenu.svg?style=flat)](http://cocoapods.org/pods/DropdownMenu)
 [![Platform](https://img.shields.io/cocoapods/p/DropdownMenu.svg?style=flat)](http://cocoapods.org/pods/DropdownMenu)
 
+## Demo
+![Demo gif](Example/screenCap.gif)
+
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
