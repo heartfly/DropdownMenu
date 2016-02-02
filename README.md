@@ -1,9 +1,9 @@
 # DropdownMenu
 
-[![CI Status](http://img.shields.io/travis/邱星豪/DropdownMenu.svg?style=flat)](https://travis-ci.org/邱星豪/DropdownMenu)
-[![Version](https://img.shields.io/cocoapods/v/DropdownMenu.svg?style=flat)](http://cocoapods.org/pods/DropdownMenu)
-[![License](https://img.shields.io/cocoapods/l/DropdownMenu.svg?style=flat)](http://cocoapods.org/pods/DropdownMenu)
-[![Platform](https://img.shields.io/cocoapods/p/DropdownMenu.svg?style=flat)](http://cocoapods.org/pods/DropdownMenu)
+[![Pod Version](https://img.shields.io/cocoapods/v/DropdownMenu.svg?style=flat)](http://cocoadocs.org/docsets/DropdownMenu/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/heartfly/DropdownMenu/blob/master/LICENSE)
+![Language](https://img.shields.io/badge/language-Swift-brightgreen.svg?style=flat)
+<!--[![Build Status](https://travis-ci.org/PhamBaTho/BTNavigationDropdownMenu.svg?branch=master)](https://travis-ci.org/PhamBaTho/BTNavigationDropdownMenu)-->
 
 ## Demo
 ![Demo gif](Example/screenCap.gif)
