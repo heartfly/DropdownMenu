@@ -3,7 +3,7 @@
 <!--[![Pod Version](https://img.shields.io/cocoapods/v/DropdownMenu.svg?style=flat)](http://cocoadocs.org/docsets/DropdownMenu/)-->
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](https://github.com/heartfly/DropdownMenu/blob/master/LICENSE)
 ![Language](https://img.shields.io/badge/language-Swift-brightgreen.svg?style=flat)
-<!--[![Build Status](https://travis-ci.org/PhamBaTho/BTNavigationDropdownMenu.svg?branch=master)](https://travis-ci.org/PhamBaTho/BTNavigationDropdownMenu)-->
+<!--[![Build Status](https://travis-ci.org/qxh/DropdownMenu.svg?branch=master)](https://travis-ci.org/qxh/DropdownMenu)-->
 
 ## Demo
 ![Demo gif](Example/screenCap.gif)
