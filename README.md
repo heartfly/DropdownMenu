@@ -31,7 +31,7 @@ DropdownMenu is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'DropdownMenu', :git => 'https://github.com/0x51/DropdownMenu'
+pod 'DropdownMenu', :git => 'https://github.com/holyq/DropdownMenu'
 ```
 
 ## Author
