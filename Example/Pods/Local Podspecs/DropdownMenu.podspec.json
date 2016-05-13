@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "summary": "A DropdownMenu, written in Swift, using Mixin Pattern",
   "description": "",
-  "homepage": "https://github.com/heartfly/DropdownMenu",
+  "homepage": "https://github.com/holyq/DropdownMenu",
   "license": "MIT",
   "authors": {
     "qxh": "qxh@mail.com"
   },
   "source": {
-    "git": "https://github.com/heartfly/DropdownMenu.git",
+    "git": "https://github.com/holyq/DropdownMenu.git",
     "tag": "0.1.0"
   },
   "platforms": {
