@@ -20,10 +20,10 @@ Pod::Spec.new do |s|
 			A dropdown menu, written in Swift, using Mixin Pattern
                        DESC
 
-  s.homepage         = "https://github.com/holyq/DropdownMenu"
+  s.homepage         = "https://github.com/imqxh/DropdownMenu"
   s.license          = 'MIT'
   s.author           = { "qxh" => "qxh@mail.com" }
-  s.source           = { :git => "https://github.com/holyq/DropdownMenu.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/imqxh/DropdownMenu.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
